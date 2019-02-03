@@ -95,7 +95,7 @@ public class Boid extends Object2D {
     }
 
     public Point noise() {
-        Point noise = new Point((rand.nextDouble() - 0.5) * 20, (rand.nextDouble() - 0.5) * 20);
+        Point noise = new Point((rand.nextDouble() - 0.5) * 100, (rand.nextDouble() - 0.5) * 100);
         noise.normalize();
         noise.mult(maxSpeed);
         noise.limit(maxForce);
@@ -127,6 +127,8 @@ public class Boid extends Object2D {
         acceleration.add(Point.mult(avoid(obstales), 2.5));
         acceleration.add(aligment(flock));
         acceleration.add(cohesion(flock));
-        // acceleration.add(noise()); // Noise
+        if (acceleration.equals(new Point())) {
+            acceleration.add(noise());
+        }
     }
 }

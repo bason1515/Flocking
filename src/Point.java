@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Point {
     private double x, y;
@@ -100,5 +101,21 @@ public class Point {
 
     static final Point mult(Point point1, double arg) {
         return new Point(point1.x * arg, point1.y * arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public boolean equals(Object point) {
+        if (!(point instanceof Point)) {
+            return false;
+        }
+        Point p = (Point) point;
+        if (p.getX() == x && p.getY() == y)
+            return true;
+        return false;
     }
 }
